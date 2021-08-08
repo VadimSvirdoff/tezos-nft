@@ -1,8 +1,5 @@
-import Head from 'next/head'
-import Image from 'next/image'
+import {Catalog} from 'modules/Marketplace/Catalog'
 
 export default function Home() {
-  return (
-    <div></div>
-  )
+  return <Catalog/>
 }
