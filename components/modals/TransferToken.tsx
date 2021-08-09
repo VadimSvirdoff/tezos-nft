@@ -13,8 +13,8 @@ import {
 } from '@chakra-ui/react';
 import { Plus } from 'react-feather';
 import { MinterButton } from '../common/index';
-import { useDispatch } from '../../../reducer';
-import { transferTokenAction } from '../../../reducer/async/actions';
+import { useDispatch } from 'rtk';
+import { transferTokenAction } from 'rtk/async/actions';
 import FormModal, { BaseModalProps, BaseModalButtonProps } from './FormModal';
 
 interface TransferTokenModalProps extends BaseModalProps {

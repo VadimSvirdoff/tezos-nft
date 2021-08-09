@@ -1,5 +1,5 @@
 import React, { useRef } from 'react';
-import { useLocation } from 'wouter';
+import { useRouter } from 'next/router';
 import {
   Box,
   Flex,
@@ -34,14 +34,14 @@ interface MobileHeaderLinkProps {
 }
 
 function MobileHeaderLink(props: MobileHeaderLinkProps) {
-  const [location, setLocation] = useLocation();
-  const selected = location === props.to;
+  const router = useRouter();
+  const selected = window.location.pathname === props.to;
   return (
     <Link
       href={props.to}
       onClick={e => {
         e.preventDefault();
-        setLocation(props.to);
+        router.replace(props.to);
         if (props.onClick) {
           props.onClick();
         }
@@ -68,14 +68,14 @@ interface DesktopHeaderLinkProps {
 }
 
 function DesktopHeaderLink(props: DesktopHeaderLinkProps) {
-  const [location, setLocation] = useLocation();
-  const selected = location === props.to;
+  const router = useRouter();
+  const selected = window.location.pathname === props.to;
   return (
     <Link
       href={props.to}
       onClick={e => {
         e.preventDefault();
-        setLocation(props.to);
+        router.replace(props.to);
       }}
       textDecor="none"
       borderRadius="10px"
@@ -115,7 +115,7 @@ function WalletInfo(props: { tzPublicKey: string }) {
 }
 
 function WalletDisplay() {
-  const [, setLocation] = useLocation();
+  const router = useRouter();
   const system = useSelector(s => s.system);
   const dispatch = useDispatch();
   return (
@@ -148,7 +148,7 @@ function WalletDisplay() {
                 variant="cancelAction"
                 onClick={async () => {
                   await dispatch(disconnectWallet());
-                  setLocation('/');
+                  router.replace('/');
                 }}
               >
                 Disconnect
@@ -175,7 +175,7 @@ function WalletDisplay() {
 function NavItems() {
   const system = useSelector(s => s.system);
   const dispatch = useDispatch();
-  const [, setLocation] = useLocation();
+  const router = useRouter();
   const { isOpen, onOpen, onClose } = useDisclosure();
   const btnRef = useRef(null);
 
@@ -231,7 +231,7 @@ function NavItems() {
                       variant="cancelAction"
                       onClick={async () => {
                         await dispatch(disconnectWallet());
-                        setLocation('/');
+                        router.replace('/');
                       }}
                       mb={4}
                     >
@@ -308,7 +308,7 @@ function NavItems() {
 }
 
 export function Header() {
-  const [, setLocation] = useLocation();
+  const router = useRouter();
 
   return (
     <Flex
@@ -329,7 +329,7 @@ export function Header() {
         src={logo}
         onClick={e => {
           e.preventDefault();
-          setLocation('/marketplace');
+          router.replace('/marketplace');
         }}
         cursor="pointer"
       />
@@ -342,7 +342,7 @@ export function Header() {
         src={headerLogo}
         onClick={e => {
           e.preventDefault();
-          setLocation('/marketplace');
+          router.replace('/marketplace');
         }}
         cursor="pointer"
       />

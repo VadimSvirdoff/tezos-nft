@@ -8,9 +8,9 @@ import {
   Text,
   useDisclosure
 } from '@chakra-ui/react';
-import { MinterButton } from '../common';
-import { useDispatch, useSelector } from '../../../reducer';
-import { cancelTokenSaleAction } from '../../../reducer/async/actions';
+import { MinterButton } from 'components/common';
+import { useDispatch, useSelector } from 'rtk';
+import { cancelTokenSaleAction } from 'rtk/async/actions';
 import FormModal, { BaseModalProps, BaseModalButtonProps } from './FormModal';
 
 interface CancelTokenSaleModalProps extends BaseModalProps {

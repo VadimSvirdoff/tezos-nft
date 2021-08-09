@@ -9,12 +9,12 @@ import {
   Text,
   useDisclosure
 } from '@chakra-ui/react';
-import { MinterButton } from '../common';
-import { useDispatch, useSelector } from '../../../reducer';
-import { buyTokenAction } from '../../../reducer/async/actions';
-import { Nft } from '../../lib/nfts/decoders';
+import { MinterButton } from 'components/common';
+import { useDispatch, useSelector } from 'rtk';
+import { buyTokenAction } from 'rtk/async/actions';
+import { Nft } from 'lib/nfts/decoders';
 import FormModal, { BaseModalProps, BaseModalButtonProps } from './FormModal';
-import tz from '../assets/tezos-sym.svg'
+import tz from 'public/assets/tezos-sym.svg'
 
 interface BuyTokenModalProps extends BaseModalProps {
   token: Nft;

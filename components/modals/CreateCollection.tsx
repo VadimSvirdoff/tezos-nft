@@ -12,9 +12,9 @@ import {
   useDisclosure
 } from '@chakra-ui/react';
 import { Plus } from 'react-feather';
-import { MinterButton } from '../common';
-import { useDispatch } from '../../../reducer';
-import { createAssetContractAction } from '../../../reducer/async/actions';
+import { MinterButton } from 'components/common';
+import { useDispatch } from 'rtk';
+import { createAssetContractAction } from 'rtk/async/actions';
 import FormModal, { BaseModalProps, BaseModalButtonProps } from './FormModal';
 
 interface CreateCollectionModalProps extends BaseModalProps {}

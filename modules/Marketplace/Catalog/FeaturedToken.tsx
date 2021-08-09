@@ -1,6 +1,6 @@
 import React from 'react';
 import { Token } from 'rtk/slices/collections';
-import { useLocation } from 'wouter';
+import { useRouter } from 'next/router';
 import { IpfsGatewayConfig } from 'lib/util/ipfs';
 import {
   Box,
@@ -17,7 +17,7 @@ interface FeaturedTokenProps extends Token {
 }
 
 export default function FeaturedToken(props: FeaturedTokenProps) {
-  const [, setLocation] = useLocation();
+  const router = useRouter();
   return (
     <Flex flexDir="row" flexWrap="wrap" mb={8} width="100%" justifyContent="center">
       <Flex maxHeight={['45vh', '65vh']} justifyContent="center" width={['85vw', '65vw', '45vw']}>
@@ -48,9 +48,7 @@ export default function FeaturedToken(props: FeaturedTokenProps) {
             w="150px"
             onClick={e => {
               e.preventDefault();
-              setLocation(`/collection/${props.address}/token/${props.id}`, {
-                replace: false
-              });
+              router.push(`/collection/${props.address}/token/${props.id}`);
             }}
           >
             <Text>View</Text>

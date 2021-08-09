@@ -13,11 +13,11 @@ import {
   useDisclosure
 } from '@chakra-ui/react';
 import { Check } from 'react-feather';
-import { MinterButton } from '../common';
-import { useDispatch, useSelector } from '../../../reducer';
-import { listTokenAction } from '../../../reducer/async/actions';
+import { MinterButton } from 'components/common';
+import { useDispatch, useSelector } from 'rtk';
+import { listTokenAction } from 'rtk/async/actions';
 import FormModal, { BaseModalProps, BaseModalButtonProps } from './FormModal';
-import tz from '../assets/tezos-sym.svg'
+import tz from 'public/assets/tezos-sym.svg'
 
 interface SellTokenModalProps extends BaseModalProps {
   contract: string;

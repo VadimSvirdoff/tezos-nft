@@ -12,13 +12,13 @@ import {
 } from '@chakra-ui/react';
 import { CheckCircle, AlertCircle, X } from 'react-feather';
 import { MinterButton } from '../common';
-import { useSelector, useDispatch } from '../../../reducer';
+import { useSelector, useDispatch } from 'rtk';
 import {
   clearError,
   setStatus,
   Status,
   Method
-} from '../../../reducer/slices/status';
+} from 'rtk/slices/status';
 
 interface ContentProps {
   isOpen: boolean;

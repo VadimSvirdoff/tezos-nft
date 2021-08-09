@@ -1,5 +1,5 @@
-import {Catalog} from 'modules/Marketplace/Catalog'
+import { Catalog } from 'modules/Marketplace/Catalog'
 
 export default function Home() {
-  return <Catalog/>
+  return <Catalog />
 }
