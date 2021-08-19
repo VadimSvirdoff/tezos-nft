@@ -1,4 +1,5 @@
 import React, { useRef } from 'react';
+import NextLink from 'next/link'
 import { useRouter } from 'next/router';
 import {
   Box,
@@ -15,17 +16,14 @@ import {
   DrawerContent,
   DrawerCloseButton,
   DrawerBody,
-  Heading
+  Heading,
 } from '@chakra-ui/react';
 import { Plus, Menu as HamburgerIcon } from 'react-feather';
 import { RiStore2Line } from 'react-icons/ri';
 import { MdCollections } from 'react-icons/md';
-import headerLogo from 'public/assets/header-logo.svg';
 import { useSelector, useDispatch } from 'rtk';
 import { connectWallet, disconnectWallet } from 'rtk/async/wallet';
 import { MinterButton } from 'components/common';
-import logo from 'public/assets/splash-logo.svg';
-import wallet_icon from 'public/assets/wallet.svg';
 
 interface MobileHeaderLinkProps {
   to: string;
@@ -35,7 +33,7 @@ interface MobileHeaderLinkProps {
 
 function MobileHeaderLink(props: MobileHeaderLinkProps) {
   const router = useRouter();
-  const selected = window.location.pathname === props.to;
+  const selected = router.pathname === props.to;
   return (
     <Link
       href={props.to}
@@ -69,7 +67,7 @@ interface DesktopHeaderLinkProps {
 
 function DesktopHeaderLink(props: DesktopHeaderLinkProps) {
   const router = useRouter();
-  const selected = window.location.pathname === props.to;
+  const selected = router.pathname === props.to;
   return (
     <Link
       href={props.to}
@@ -131,7 +129,7 @@ function WalletDisplay() {
             }}
           >
             <Image
-              src={wallet_icon}
+              src="/assets/wallet.svg"
               width={4}
               height="auto"
               style={{ filter: 'invert(1)' }}
@@ -165,7 +163,7 @@ function WalletDisplay() {
           }}
         >
           Connect Wallet
-          <Image src={wallet_icon} width="auto" height="40%" paddingLeft={3} />
+          <Image src="/assets/wallet.svg" width="auto" height="40%" paddingLeft={3} />
         </MinterButton>
       )}
     </>
@@ -248,7 +246,7 @@ function NavItems() {
                     >
                       Connect Wallet
                       <Image
-                        src={wallet_icon}
+                        src="/assets/wallet.svg"
                         width="auto"
                         height="40%"
                         paddingLeft={3}
@@ -326,7 +324,7 @@ export function Header() {
         }}
         maxH="28px"
         marginTop="4px"
-        src={logo}
+        src='/assets/splash-logo.svg'
         onClick={e => {
           e.preventDefault();
           router.replace('/marketplace');
@@ -339,7 +337,7 @@ export function Header() {
           md: 'none'
         }}
         maxW="38px"
-        src={headerLogo}
+        src='/assets/header-logo.svg'
         onClick={e => {
           e.preventDefault();
           router.replace('/marketplace');

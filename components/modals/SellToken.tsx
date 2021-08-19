@@ -17,7 +17,7 @@ import { MinterButton } from 'components/common';
 import { useDispatch, useSelector } from 'rtk';
 import { listTokenAction } from 'rtk/async/actions';
 import FormModal, { BaseModalProps, BaseModalButtonProps } from './FormModal';
-import tz from 'public/assets/tezos-sym.svg'
+
 
 interface SellTokenModalProps extends BaseModalProps {
   contract: string;
@@ -61,7 +61,7 @@ export function SellTokenModal(props: SellTokenModalProps) {
                     pointerEvents="none"
                     color="gray.900"
                     fontSize="1.2em"
-                    children={<img src={tz} alt="" width={10} height="auto" style={{display: 'inline-block'}}/>}
+                    children={<img src='/assets/tezos-sym.svg' alt="" width={10} height="auto" style={{display: 'inline-block'}}/>}
                   />
                   <Input
                     autoFocus={true}

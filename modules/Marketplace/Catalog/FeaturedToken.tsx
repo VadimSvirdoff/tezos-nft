@@ -10,7 +10,6 @@ import {
 } from '@chakra-ui/react';
 import { MinterButton } from 'components/common';
 import { TokenMedia } from 'components/tokenMedia';
-import tz from 'public/assets/tezos-sym.svg';
 
 interface FeaturedTokenProps extends Token {
   config: IpfsGatewayConfig;
@@ -38,7 +37,7 @@ export default function FeaturedToken(props: FeaturedTokenProps) {
           <Text fontSize="lg">
             Current Price:{' '}
             <Text as="span" fontWeight="600">
-              {props.sale?.price} <img src={tz} alt="" width={10} height="auto" style={{ display: 'inline-block' }} />
+              {props.sale?.price} <img src='/assets/tezos-sym.svg' alt="" width={10} height="auto" style={{ display: 'inline-block' }} />
               </Text>
           </Text>
           <br/>

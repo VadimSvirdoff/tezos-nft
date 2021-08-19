@@ -19,7 +19,6 @@ import {
 import { TokenCard } from 'components/tokenCard';
 import { Collection } from 'rtk/slices/collections';
 import { MinterButton } from 'components/common';
-import lk from 'public/assets/link-icon.svg'
 
 interface CreatorDisplay404Props {
   ownedOnly: boolean;
@@ -141,7 +140,7 @@ export default function CreatorDisplay({
             src={`https://services.tzkt.io/v1/avatars2/${collection.address}`}
           />
           <Link display="block" whiteSpace="nowrap" overflow="hidden" textOverflow="ellipsis" href={`https://${(config.network + '.').replace('mainnet.', '')}tzkt.io/${minter}`}>
-            <Heading fontSize="1.5rem" overflow="hidden" textOverflow="ellipsis" overflowWrap="normal">{minter}&nbsp;<sup><img src={lk} alt="" width="auto" height="auto" style={{ display: 'inline-block' }} /></sup></Heading>
+            <Heading fontSize="1.5rem" overflow="hidden" textOverflow="ellipsis" overflowWrap="normal">{minter}&nbsp;<sup><img src="/assets/link-icon.svg" alt="" width="auto" height="auto" style={{ display: 'inline-block' }} /></sup></Heading>
           </Link>
         </Flex>
       </Flex>

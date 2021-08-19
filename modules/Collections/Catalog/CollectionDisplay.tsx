@@ -19,15 +19,15 @@ import CollectionsDropdown from './CollectionsDropdown';
 import { TokenCard } from 'components/tokenCard';
 
 interface CollectionDisplayProps {
-  address: string | null;
   ownedOnly?: boolean;
 }
 
 export default function CollectionDisplay({
-  address,
   ownedOnly = true
 }: CollectionDisplayProps) {
   const collections = useSelector(s => s.collections);
+  const address = collections.selectedCollection;
+
   const { config, tzPublicKey, wallet } = useSelector(s => s.system);
   const dispatch = useDispatch();
 

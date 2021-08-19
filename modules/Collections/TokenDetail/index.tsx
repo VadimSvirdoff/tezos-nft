@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import { useRouter } from 'next/router';
 import {
   Accordion,
   AccordionButton,
@@ -19,19 +20,17 @@ import {
   useDisclosure
 } from '@chakra-ui/react';
 import { ChevronLeft, HelpCircle, MoreHorizontal } from 'react-feather';
-import { MinterButton, MinterMenuButton, MinterMenuItem } from '../../common';
-import { TransferTokenModal } from '../../common/modals/TransferToken';
-import { SellTokenButton } from '../../common/modals/SellToken';
-import { CancelTokenSaleButton } from '../../common/modals/CancelTokenSale';
-import { BuyTokenButton } from '../../common/modals/BuyToken';
-import { useSelector, useDispatch } from '../../../reducer';
+import { MinterButton, MinterMenuButton, MinterMenuItem } from 'components/common';
+import { TransferTokenModal } from 'components/modals/TransferToken';
+import { SellTokenButton } from 'components/modals/SellToken';
+import { CancelTokenSaleButton } from 'components/modals/CancelTokenSale';
+import { BuyTokenButton } from 'components/modals/BuyToken';
+import { useSelector, useDispatch } from 'rtk';
 import {
   getContractNftsQuery,
   getNftAssetContractQuery
-} from '../../../reducer/async/queries';
-import { TokenMedia } from '../../common/TokenMedia';
-import lk from '../../common/assets/link-icon.svg'
-import tz from '../../common/assets/tezos-sym.svg'
+} from 'rtk/async/queries';
+import { TokenMedia } from 'components/tokenMedia';
 import { Maximize2 } from 'react-feather';
 
 function NotFound() {
@@ -62,12 +61,17 @@ function NotFound() {
   );
 }
 
-interface TokenDetailProps {
-  contractAddress: string;
-  tokenId: number;
-}
+function TokenDetail() {
+  const router = useRouter();
+  const {
+    tokenId,
+    contractAddress
+  } = router.query;
 
-function TokenDetail({ contractAddress, tokenId }: TokenDetailProps) {
+  if(typeof tokenId !== 'string' || typeof contractAddress !== 'string' ){
+    return null
+  }
+
   const { system, collections: state } = useSelector(s => s);
   const disclosure = useDisclosure();
   const dispatch = useDispatch();
@@ -88,7 +92,7 @@ function TokenDetail({ contractAddress, tokenId }: TokenDetailProps) {
     return null;
   }
 
-  const token = collection.tokens.find(token => token.id === tokenId);
+  const token = collection.tokens.find(({id}) => id === +tokenId);
   if (!token) {
     return <NotFound />;
   }
@@ -230,7 +234,7 @@ function TokenDetail({ contractAddress, tokenId }: TokenDetailProps) {
                     <Text color="brand.neutralGray">Minter:</Text>
                     <Text color="brand.darkGray" fontWeight="bold" ml={[1]} whiteSpace="nowrap" overflow="hidden">
                       <Link display="block" whiteSpace="nowrap" overflow="hidden" textOverflow="ellipsis" href={`/creator/${token?.metadata?.minter}`}>{
-                        token?.metadata?.minter}&nbsp;<sup><img src={lk} alt="" width="auto" height="auto" style={{ display: 'inline-block' }} /></sup></Link>
+                        token?.metadata?.minter}&nbsp;<sup><img src='/assets/link-ico.svg' alt="" width="auto" height="auto" style={{ display: 'inline-block' }} /></sup></Link>
                     </Text>
                   </Flex>
                   <Flex mt={[4, 8]}>
@@ -241,7 +245,7 @@ function TokenDetail({ contractAddress, tokenId }: TokenDetailProps) {
                           : collection?.metadata.name ? collection?.metadata.name 
                           : contractAddress
                         }&nbsp;
-                        <sup><img src={lk} alt="" width="auto" height="auto" style={{ display: 'inline-block' }} /></sup></Link>
+                        <sup><img src='/assets/link-icon.svg' alt="" width="auto" height="auto" style={{ display: 'inline-block' }} /></sup></Link>
                     </Text>
                   </Flex>
                   {token?.metadata?.attributes?.map(({ name, value }) => (
@@ -261,7 +265,7 @@ function TokenDetail({ contractAddress, tokenId }: TokenDetailProps) {
                   isOwner ? (
                     <>
                       <Text color="brand.black" fontSize="xl" fontWeight="700" marginRight={8}>
-                        {token.sale.price} <img src={tz} alt="" width={10} height="auto" style={{ display: 'inline-block' }} />
+                        {token.sale.price} <img src='/assets/tezos-sym.svg' alt="" width={10} height="auto" style={{ display: 'inline-block' }} />
                       </Text>
                       <Box marginRight={8}>
                         <CancelTokenSaleButton
@@ -275,7 +279,7 @@ function TokenDetail({ contractAddress, tokenId }: TokenDetailProps) {
                   ) : (
                     <>
                       <Text color="black" fontSize={['md', 'md', 'lg']} mr={1} fontWeight="700" marginRight={8}>
-                        {token.sale.price.toFixed(2)} <img src={tz} alt="" width={10} height="auto" style={{ display: 'inline-block' }} />
+                        {token.sale.price.toFixed(2)} <img src='/assets/tezos-sym.svg' alt="" width={10} height="auto" style={{ display: 'inline-block' }} />
                       </Text>
                       <Box>
                         <BuyTokenButton token={token} />
@@ -284,7 +288,7 @@ function TokenDetail({ contractAddress, tokenId }: TokenDetailProps) {
                   )
                 ) : isOwner ? (
                   <Box marginRight={8}>
-                    <SellTokenButton contract={contractAddress} tokenId={tokenId} />
+                    <SellTokenButton contract={contractAddress} tokenId={+tokenId} />
                   </Box>
                 ) : (
                   <></>
@@ -314,7 +318,7 @@ function TokenDetail({ contractAddress, tokenId }: TokenDetailProps) {
                     </MenuList>
                     <TransferTokenModal
                       contractAddress={contractAddress}
-                      tokenId={tokenId}
+                      tokenId={+tokenId}
                       disclosure={disclosure}
                     />
                   </Menu>

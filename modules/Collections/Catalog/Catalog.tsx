@@ -9,7 +9,6 @@ import {
 } from 'rtk/async/queries';
 import { selectCollection } from 'rtk/slices/collections';
 import { connectWallet } from 'rtk/async/wallet';
-import logo from 'public/assets/splash-logo.svg';
 import { MinterButton } from 'components/common';
 
 export default function Catalog() {
@@ -42,7 +41,6 @@ export default function Catalog() {
     }
   }, [system.status, dispatch]);
 
-  const selectedCollection = collections.selectedCollection;
   if (system.walletReconnectAttempted && system.status !== 'WalletConnected') {
     return (
       <Flex
@@ -54,7 +52,7 @@ export default function Catalog() {
         bg="brand.background"
       >
         <Flex flexDir="column" align="center" maxW="600px" pt={20}>
-          <Image src={logo} maxW="200px" pb={40} />
+          <Image src='/assets/splash-logo.svg' maxW="200px" pb={40} />
           <Heading color="white" size="xl" pb={8}>
             Create NFTs on Tezos
           </Heading>
@@ -118,7 +116,7 @@ export default function Catalog() {
       >
         <Sidebar />
       </Flex>
-      <CollectionDisplay address={selectedCollection} />
+      <CollectionDisplay/>
     </Flex>
   );
 }
