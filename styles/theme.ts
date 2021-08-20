@@ -5,6 +5,10 @@ import { Link } from './link';
 
 
 export const theme = extendTheme({
+    config: {
+        initialColorMode: "light",
+        useSystemColorMode: false,
+    },
     styles: {
         global: {
             'html, body': {
