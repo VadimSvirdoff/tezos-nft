@@ -8,8 +8,8 @@ import {
 import { Plus } from 'react-feather';
 import { RiStore2Line } from 'react-icons/ri';
 import { MdCollections } from 'react-icons/md';
-import DesktopHeaderLink from "../DesktopHeaderLink";
-import WalletDisplay from '../WalletDisplay';
+import DesktopHeaderLink from "../headerLink/DesktopHeaderLink";
+import WalletDisplay from 'components/header/walletDisplay/WalletDisplay';
 
 
 const DesktopNavItems = () => {

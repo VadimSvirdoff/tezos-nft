@@ -4,7 +4,7 @@ import {
   Flex,
   Image,
 } from '@chakra-ui/react';
-import NavItems from './NavItems';
+import NavItems from 'components/header/navItems/NavItems';
 
 export function Header() {
   const router = useRouter();

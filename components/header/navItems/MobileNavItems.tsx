@@ -15,7 +15,7 @@ import {
 import { Menu as HamburgerIcon } from 'react-feather';
 import { connectWallet, disconnectWallet } from 'rtk/async/wallet';
 import { MinterButton } from 'components/common';
-import MobileHeaderLink from "../MobileHeaderLink";
+import MobileHeaderLink from "components/header/headerLink/MobileHeaderLink";
 
 const MobileNavItems = () => {
     const system = useSelector(s => s.system);
