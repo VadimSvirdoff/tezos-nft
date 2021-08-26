@@ -1,0 +1,74 @@
+import React from 'react';
+import {
+  Box,
+  Button,
+  ModalHeader,
+  ModalFooter,
+  ModalBody,
+  ModalCloseButton,
+  Text,
+  UseDisclosureReturn
+} from '@chakra-ui/react';
+import { useDispatch } from 'rtk';
+import { buyTokenAction } from 'rtk/async/actions';
+import { Nft } from 'lib/nfts/decoders';
+import FormModal, { BaseModalProps, BaseModalButtonProps } from 'components/modals/FormModal';
+
+interface BuyTokenModalProps extends BaseModalProps {
+  token: Nft;
+  sync?: boolean;
+  disclosure: UseDisclosureReturn;
+}
+
+export function BuyTokenModal({ token, disclosure, sync }: BuyTokenModalProps) {
+  const dispatch = useDispatch();
+  const initialRef = React.useRef(null);
+  return (
+    <FormModal
+      disclosure={disclosure}
+      sync={sync}
+      method="buyToken"
+      dispatchThunk={() =>
+        dispatch(
+          buyTokenAction({
+            contract: token.sale?.saleToken.address || '',
+            tokenId: token.sale?.saleToken.tokenId || 0,
+            tokenSeller: token.sale?.seller || '',
+            salePrice: token.sale?.price || 0,
+            saleId: token.sale?.saleId || 0,
+            saleType: token.sale?.type || ''
+          })
+        )
+      }
+      initialRef={initialRef}
+      pendingMessage="Purchasing token..."
+      completeMessage="Token purchased"
+      body={onSubmit => (
+        <>
+          <ModalHeader>Checkout</ModalHeader>
+          <ModalCloseButton />
+          <ModalBody>
+            <Text>
+              You are about to purchase
+              <Box as="span" fontWeight="bold">
+                {' '}
+                {token.title} (<img src="/assets/tezos-sym.svg" alt="" width={10} height="auto" style={{ display: 'inline-block' }} /> {token.sale?.price})
+              </Box>
+            </Text>
+          </ModalBody>
+          <ModalFooter>
+            <Button
+              variant="primaryAction"
+              onClick={() => onSubmit()}
+              isFullWidth={true}
+            >
+              Buy now
+            </Button>
+          </ModalFooter>
+        </>
+      )}
+    />
+  );
+}
+
+
