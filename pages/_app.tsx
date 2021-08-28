@@ -4,7 +4,8 @@ import { Provider } from 'react-redux';
 import { store } from 'rtk';
 import { theme } from 'styles/theme';
 import { Header } from "components/header"
-import { Notifications } from "components/notifications"
+import { Notifications } from "components/notifications";
+import "../styles/global.css";
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (

@@ -5,14 +5,12 @@ import { Link } from './link';
 
 
 export const theme = extendTheme({
-    config: {
-        initialColorMode: "light",
-        useSystemColorMode: false,
-    },
+    
     styles: {
         global: {
             'html, body': {
-                height: '100%'
+                height: '100%',
+                color: 'black'
             }
         }
     },
