@@ -9,8 +9,9 @@ export const theme = extendTheme({
     styles: {
         global: {
             'html, body': {
-                height: '100%',
-                color: 'black'
+                color: 'black',
+                overflowX: 'hidden',
+                overflowY: 'auto'
             }
         }
     },

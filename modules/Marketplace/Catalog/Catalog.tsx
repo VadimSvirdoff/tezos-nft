@@ -6,7 +6,7 @@ import {
   getMarketplaceNftsQuery,
   loadMoreMarketplaceNftsQuery
 } from 'rtk/async/queries';
-import {TokenCard} from 'components/tokenCard';
+import { TokenCard } from 'components/tokenCard';
 import FeaturedToken from './FeaturedToken';
 import { VisibilityTrigger } from 'components/visibilityTrigger';
 
@@ -33,6 +33,7 @@ export default function Catalog() {
       px={10}
       pt={6}
       overflowY="scroll"
+      overflowX='hidden'
       justify="start"
       flexDir="column"
     >
@@ -51,7 +52,7 @@ export default function Catalog() {
             <Spinner size="xl" mb={6} color="gray.300" />
             <Heading size="lg" textAlign="center" color="gray.500">
               Loading...
-              </Heading>
+            </Heading>
           </Flex>
         ) : tokens.length === 0 ? (
           <Flex w="100%" flex="1" flexDir="column" align="center">
@@ -70,7 +71,7 @@ export default function Catalog() {
               <Wind />
               <Text fontWeight="600" pt={5}>
                 No tokens to display in this marketplace
-                </Text>
+              </Text>
             </Flex>
           </Flex>
         ) : (
@@ -83,7 +84,7 @@ export default function Catalog() {
               <>
                 {tokens.slice(1).map(token => {
                   return (
-                    <Box display="grid" transition="250ms padding" padding={1} _hover={{padding: 0}}>
+                    <Box display="grid" transition="250ms padding" padding={1} _hover={{ padding: 0 }}>
                       <TokenCard
                         key={`${token.address}-${token.id}`}
                         config={system.config}
