@@ -82,9 +82,9 @@ export default function Catalog() {
               pb={8}
             >
               <>
-                {tokens.slice(1).map(token => {
+                {tokens.slice(1).map((token, id) => {
                   return (
-                    <Box display="grid" transition="250ms padding" padding={1} _hover={{ padding: 0 }}>
+                    <Box display="grid" transition="250ms padding" padding={1} _hover={{ padding: 0 }} key={id}>
                       <TokenCard
                         key={`${token.address}-${token.id}`}
                         config={system.config}
